@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Decorando Sueños – Pastelería & Repostería · Rivera, Huila</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #D63F6E;
+    --rose-dark: #A8284F;
+    --rose-light: #F4B8CC;
+    --rose-pale: #FDE8EF;
+    --cream: #FFF8F2;
+    --cream-dark: #F5EDE4;
+    --chocolate: #2C1016;
+    --muted: #7A4D57;
+    --white: #FFFFFF;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--cream);
+    color: var(--chocolate);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,248,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rose-light);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: var(--rose);
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--chocolate);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--rose); }
+  .nav-cta {
+    background: var(--rose);
+    color: white !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 100px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--rose-dark) !important; color: white !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 100px 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .hero-blob-1 { width: 600px; height: 600px; background: var(--rose-light); top: -100px; left: -200px; }
+  .hero-blob-2 { width: 500px; height: 500px; background: #F9C6A6; bottom: -100px; right: -150px; }
+  .hero-blob-3 { width: 300px; height: 300px; background: var(--rose); top: 40%; left: 50%; transform: translate(-50%,-50%); opacity: 0.12; }
+
+  .hero-inner { position: relative; z-index: 1; max-width: 780px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--rose-pale);
+    border: 1px solid var(--rose-light);
+    border-radius: 100px;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--rose-dark);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--rose); display: inline-block; }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--chocolate);
+    animation: fadeUp 0.6s 0.1s ease both;
+    margin-bottom: 0.3em;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--rose);
+  }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-ctas {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--rose);
+    color: white;
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { background: var(--rose-dark); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--chocolate);
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    border: 2px solid var(--chocolate);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-outline:hover { background: var(--chocolate); color: white; transform: translateY(-2px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;
+    animation: fadeUp 0.6s 0.6s ease both;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--rose), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    background: var(--rose);
+    padding: 1rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-flex;
+    animation: marquee 30s linear infinite;
+    gap: 0;
+  }
+  .marquee-item {
+    display: inline-flex; align-items: center; gap: 1rem;
+    padding: 0 2rem;
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-style: italic;
+    color: white;
+    letter-spacing: 0.02em;
+  }
+  .marquee-sep { color: rgba(255,255,255,0.4); font-style: normal; }
+
+  /* SECTION HEADERS */
+  section { padding: 5rem 2rem; }
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 0.75rem;
+  }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--chocolate);
+    margin-bottom: 1rem;
+  }
+  h2 em { color: var(--rose); font-style: italic; }
+  .section-lead {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* FEATURES */
+  .features { background: var(--cream-dark); }
+  .features-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  .feature-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid var(--rose-light);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(214,63,110,0.12); }
+  .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .feature-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--chocolate);
+  }
+  .feature-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+  /* MENU */
+  .menu-section { background: var(--cream); }
+  .menu-inner { max-width: 1100px; margin: 0 auto; }
+  .menu-tabs {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .tab-btn {
+    padding: 0.5rem 1.2rem;
+    border-radius: 100px;
+    border: 1.5px solid var(--rose-light);
+    background: transparent;
+    color: var(--muted);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .tab-btn:hover, .tab-btn.active {
+    background: var(--rose);
+    border-color: var(--rose);
+    color: white;
+  }
+  .menu-panel { display: none; }
+  .menu-panel.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+  .menu-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--cream-dark);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .menu-card:hover { border-color: var(--rose-light); transform: translateY(-2px); }
+  .menu-item-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--chocolate);
+    line-height: 1.3;
+  }
+  .menu-item-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+  .menu-price {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--rose);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .menu-note {
+    margin-top: 1.5rem;
+    background: var(--rose-pale);
+    border: 1px solid var(--rose-light);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    font-size: 0.85rem;
+    color: var(--rose-dark);
+    font-weight: 500;
+  }
+
+  /* ABOUT */
+  .about { background: var(--chocolate); color: white; }
+  .about-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .about h2 { color: white; }
+  .about h2 em { color: var(--rose-light); }
+  .about .section-tag { color: var(--rose-light); }
+  .about .section-lead { color: rgba(255,255,255,0.6); max-width: 100%; margin-bottom: 0; }
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .stat {
+    border-top: 2px solid var(--rose);
+    padding-top: 1rem;
+  }
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: white;
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 0.25rem; letter-spacing: 0.05em; text-transform: uppercase; }
+  .about-visual {
+    background: linear-gradient(135deg, var(--rose-dark), var(--rose));
+    border-radius: 24px;
+    height: 380px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 1rem;
+    position: relative; overflow: hidden;
+  }
+  .about-visual-text {
+    font-family: 'Fraunces', serif;
+    font-size: 5rem;
+    font-weight: 900;
+    font-style: italic;
+    color: rgba(255,255,255,0.2);
+    position: absolute;
+    bottom: -1rem; right: 1rem;
+    line-height: 1;
+  }
+  .about-visual-main {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    line-height: 1.5;
+    position: relative; z-index: 1;
+  }
+
+  /* DOMICILIOS */
+  .delivery { background: var(--rose-pale); }
+  .delivery-inner {
+    max-width: 800px; margin: 0 auto; text-align: center;
+  }
+  .delivery-card {
+    background: white;
+    border-radius: 24px;
+    padding: 3rem;
+    border: 1px solid var(--rose-light);
+    margin-top: 2rem;
+  }
+  .delivery-phone {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.5rem, 7vw, 4rem);
+    font-weight: 900;
+    color: var(--rose);
+    letter-spacing: -0.02em;
+    display: block;
+    margin: 1rem 0;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .delivery-phone:hover { color: var(--rose-dark); }
+  .delivery-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+  .delivery-note {
+    display: inline-block;
+    background: var(--rose-pale);
+    border: 1px solid var(--rose-light);
+    border-radius: 100px;
+    padding: 0.4rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--rose-dark);
+  }
+
+  /* SOCIAL */
+  .social-section { background: var(--cream-dark); padding: 4rem 2rem; }
+  .social-inner { max-width: 600px; margin: 0 auto; text-align: center; }
+  .social-links { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+  .social-link {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 100px;
+    border: 2px solid var(--chocolate);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--chocolate);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .social-link:hover { background: var(--chocolate); color: white; transform: translateY(-2px); }
+  .social-link.wa { border-color: #25D366; color: #25D366; }
+  .social-link.wa:hover { background: #25D366; color: white; }
+  .social-link.ig { border-color: #E1306C; color: #E1306C; }
+  .social-link.ig:hover { background: #E1306C; color: white; }
+  .social-link.fb { border-color: #1877F2; color: #1877F2; }
+  .social-link.fb:hover { background: #1877F2; color: white; }
+
+  /* FOOTER */
+  footer {
+    background: var(--chocolate);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+  }
+  footer strong { color: white; font-family: 'Fraunces', serif; font-style: italic; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .about-visual { height: 240px; }
+    section { padding: 3.5rem 1.25rem; }
+    .delivery-card { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Decorando Sueños</div>
+  <ul class="nav-links">
+    <li><a href="#menu">Menú</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#domicilios">Domicilios</a></li>
+    <li><a href="https://wa.me/573123931341" target="_blank" class="nav-cta">Pedir ahora</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-blob hero-blob-3"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="hero-dot"></span>
+      Pastelería & Repostería · Rivera, Huila
+    </div>
+    <h1>Cada <em>postre</em><br>es una obra</h1>
+    <p class="hero-sub">Helados artesanales, tortas personalizadas, waffles, fresas con crema y mucho más. Hechos con amor en Rivera, Huila.</p>
+    <div class="hero-ctas">
+      <a href="#menu" class="btn-primary">Ver el menú 🍰</a>
+      <a href="https://wa.me/573123931341" target="_blank" class="btn-outline">Pedir por WhatsApp</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Helados 🍦 <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Tortas Personalizadas 🎂 <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Fresas con Crema 🍓 <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Waffles 🧇 <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Malteadas 🥤 <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Merengón 🎉 <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Cheesecake 🍮 <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Crepes 🍫 <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Cholao ❄️ <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Domicilios 🛵 <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Helados 🍦 <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Tortas Personalizadas 🎂 <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Fresas con Crema 🍓 <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Waffles 🧇 <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Malteadas 🥤 <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Merengón 🎉 <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Cheesecake 🍮 <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Crepes 🍫 <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Cholao ❄️ <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Domicilios 🛵 <span class="marquee-sep">·</span></span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="features-grid">
+    <div style="grid-column: 1/-1; max-width: 600px;">
+      <span class="section-tag">Por qué elegirnos</span>
+      <h2>Lo <em>dulce</em> hecho bien</h2>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🍰</span>
+      <h3>Variedad sin igual</h3>
+      <p>Más de 50 productos: helados, tortas, postres fríos, bebidas calientes y mucho más.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🛵</span>
+      <h3>Domicilios rápidos</h3>
+      <p>Te llevamos el antojo a donde estés en Rivera. Llama o escríbenos por WhatsApp.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🎂</span>
+      <h3>Tortas para toda ocasión</h3>
+      <p>Red Velvet, Tres Leches, Zanahoria, Brownie y más. Perfectas para celebrar.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">❤️</span>
+      <h3>Hechos con amor</h3>
+      <p>Cada postre es preparado con ingredientes frescos y mucho cariño.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="menu-inner">
+    <span class="section-tag">Nuestro Menú</span>
+    <h2>Elige tu <em>antojo</em></h2>
+    <p class="section-lead">Precios en pesos colombianos. Todos los productos para llevar tienen un adicional de $1.000.</p>
+
+    <div class="menu-tabs">
+      <button class="tab-btn active" onclick="showTab('postres')">Postres</button>
+      <button class="tab-btn" onclick="showTab('tortas')">Tortas</button>
+      <button class="tab-btn" onclick="showTab('helados')">Helados</button>
+      <button class="tab-btn" onclick="showTab('malteadas')">Malteadas</button>
+      <button class="tab-btn" onclick="showTab('fresas')">Fresas & Waffles</button>
+      <button class="tab-btn" onclick="showTab('cholao')">Cholao & Merengón</button>
+      <button class="tab-btn" onclick="showTab('bebidas')">Bebidas</button>
+      <button class="tab-btn" onclick="showTab('otros')">Otros</button>
+    </div>
+
+    <div id="postres" class="menu-panel active">
+      <div class="menu-card"><div><div class="menu-item-name">Postre Oreo</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Postre Limón</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Postre Cholupa</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Postre Milo</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Tiramisú</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Postre Maracuyá</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Napoleón</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Tres Leches</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Arroz con Leche</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Gelatina Arcoíris</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Flan de Queso</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Charlotte de Café</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Arequipe</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Chocoflan</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Cheesecake</div><div class="menu-item-desc">Frutos rojos, amarillos u Oreo</div></div><div class="menu-price">$12.000</div></div>
+    </div>
+
+    <div id="tortas" class="menu-panel">
+      <div class="menu-card"><div><div class="menu-item-name">Fría de 3 Leches</div></div><div class="menu-price">$9.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Fría de Frutas</div></div><div class="menu-price">$9.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Fría de Chocolate</div></div><div class="menu-price">$9.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Fría de Arequipe</div></div><div class="menu-price">$9.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Vainilla</div></div><div class="menu-price">$9.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Brownie</div></div><div class="menu-price">$9.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Zanahoria</div></div><div class="menu-price">$9.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Red Velvet</div></div><div class="menu-price">$9.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Ponque Tradicional</div></div><div class="menu-price">$9.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Moka - Café</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Tiramisú</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Tres Leches Chocolate</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Malojabana</div></div><div class="menu-price">$10.000</div></div>
+    </div>
+
+    <div id="helados" class="menu-panel">
+      <div class="menu-card"><div><div class="menu-item-name">Canasta de Helado Sencilla</div><div class="menu-item-desc">3 porciones de helado, chips y salsas</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Canasta Chocorramo</div><div class="menu-item-desc">Trozos de chocorramo, helado, chips y salsas</div></div><div class="menu-price">$13.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Canasta Oreo</div><div class="menu-item-desc">Oreo, trozos de oreo, chips y salsas</div></div><div class="menu-price">$13.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Copa de Helado Sencilla</div></div><div class="menu-price">$5.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Copa de Helado Doble</div></div><div class="menu-price">$9.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Cono Sencillo</div></div><div class="menu-price">$5.500</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Cono Doble</div></div><div class="menu-price">$9.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Cono Fiesta</div><div class="menu-item-desc">3 porciones, fruta, barquillos y salsas</div></div><div class="menu-price">$17.500</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Copa Queso</div><div class="menu-item-desc">Obleas, queso, crema, salsas</div></div><div class="menu-price">$18.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Banana Split</div><div class="menu-item-desc">3 porciones, crema, barquillos y salsas</div></div><div class="menu-price">$12.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Banana Split con Queso</div></div><div class="menu-price">$16.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Helado Infantil Payasito</div></div><div class="menu-price">$7.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Mickey Mouse</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Pollito Rockero</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Osito</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Canasta de Helado Especial</div><div class="menu-item-desc">+4 porciones, todos los sabores</div></div><div class="menu-price">$16.000</div></div>
+    </div>
+
+    <div id="malteadas" class="menu-panel">
+      <div class="menu-card"><div><div class="menu-item-name">Malteada Chocolate</div></div><div class="menu-price">$14.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Malteada Maracuyá</div></div><div class="menu-price">$14.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Malteada Frutos Rojos</div></div><div class="menu-price">$14.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Malteada Vainilla</div></div><div class="menu-price">$14.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Malteada Brownie</div></div><div class="menu-price">$14.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Salpicón 12 onzas</div></div><div class="menu-price">$6.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Salpicón 14 onzas</div></div><div class="menu-price">$7.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Salpicón 16 onzas</div></div><div class="menu-price">$8.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Salpicón Especial</div><div class="menu-item-desc">Con crema de la casa, durazno, uvas y barquillos</div></div><div class="menu-price">$12.000</div></div>
+    </div>
+
+    <div id="fresas" class="menu-panel">
+      <div class="menu-card"><div><div class="menu-item-name">Fresas con Crema Sencilla</div></div><div class="menu-price">$11.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Fresas con Queso</div></div><div class="menu-price">$13.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Fresas con Queso y Helado</div></div><div class="menu-price">$15.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Fresas con Queso, Helado y Choc</div></div><div class="menu-price">$16.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Fresas con Queso, Helado y Brownie</div></div><div class="menu-price">$17.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Waffle Sencillo</div><div class="menu-item-desc">Helado, nutella, chips y salsas</div></div><div class="menu-price">$12.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Waffle Especial</div><div class="menu-item-desc">Helado, nutella, chips, galleta, frutas, kiwi, durazno, arándanos, crema y salsas</div></div><div class="menu-price">$16.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Crepe Sencillo</div><div class="menu-item-desc">Helado, crema, fresas</div></div><div class="menu-price">$12.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Crepe Súper Especial</div><div class="menu-item-desc">Helado, nutella, chips, fresas, banano y durazno</div></div><div class="menu-price">$20.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Crepe de Chocolate</div></div><div class="menu-price">$23.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Brownie con Helado (1 porción)</div></div><div class="menu-price">$12.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Brownie con Helado (2 porciones)</div></div><div class="menu-price">$14.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Brownie con Helado (3 porciones)</div></div><div class="menu-price">$16.000</div></div>
+    </div>
+
+    <div id="cholao" class="menu-panel">
+      <div class="menu-card"><div><div class="menu-item-name">Cholao 12 onzas</div><div class="menu-item-desc">Mix de frutas, helado, milo y salsas</div></div><div class="menu-price">$13.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Cholao 16 onzas</div></div><div class="menu-price">$16.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Merengón Sencillo</div><div class="menu-item-desc">Fresas, guanábana o durazno</div></div><div class="menu-price">$10.500</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Merengón Mixto</div><div class="menu-item-desc">Fresas, guanábana y durazno</div></div><div class="menu-price">$13.500</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Merengón Especial</div><div class="menu-item-desc">Fresas, guanábana, durazno, maracuyá y kiwi</div></div><div class="menu-price">$16.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Merengón De la Casa</div><div class="menu-item-desc">Fresas, guanábana, durazno, maracuyá, kiwi y queso</div></div><div class="menu-price">$17.500</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Merengón Cuchareable</div><div class="menu-item-desc">Maracuyá, queso, helado, crema, salsas y barquillos</div></div><div class="menu-price">$10.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Obleas con Arequipe</div></div><div class="menu-price">$2.500</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Obleas con Arequipe y Queso</div></div><div class="menu-price">$4.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Obleas Arequipe, Queso, Fruta y Crema</div></div><div class="menu-price">$7.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Milhoja Sencilla</div></div><div class="menu-price">$9.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Milhoja Especial</div><div class="menu-item-desc">Con frutas</div></div><div class="menu-price">$13.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Milhoja Cuchareable</div></div><div class="menu-price">$18.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Brazo de Reina Porción</div></div><div class="menu-price">$6.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Durazno con Crema Chantilly</div></div><div class="menu-price">$12.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Ensalada de Frutas Mini</div><div class="menu-item-desc">1 porción de helado</div></div><div class="menu-price">$13.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Ensalada de Frutas Especial</div><div class="menu-item-desc">2 porciones de helado</div></div><div class="menu-price">$16.000</div></div>
+    </div>
+
+    <div id="bebidas" class="menu-panel">
+      <div class="menu-card"><div><div class="menu-item-name">Jugos Naturales (en agua)</div><div class="menu-item-desc">Lulo, maracuyá, guanábana, fresa, mora</div></div><div class="menu-price">$7.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Cholupa / Limonada (en agua)</div></div><div class="menu-price">$8.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Frappé</div><div class="menu-item-desc">Oreo, caramelo, mocca, capuccino, milo frío</div></div><div class="menu-price">$12.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Soda Italiana</div><div class="menu-item-desc">Frutos rojos, amarillos o kiwi</div></div><div class="menu-price">$12.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Limonada de Coco</div></div><div class="menu-price">$12.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Limonada Cerezada</div></div><div class="menu-price">$12.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Leche Caliente</div></div><div class="menu-price">$3.500</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Americano</div></div><div class="menu-price">$4.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Expresso</div></div><div class="menu-price">$4.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Chocolate con Leche</div></div><div class="menu-price">$5.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Latte</div></div><div class="menu-price">$6.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Mocaccino</div></div><div class="menu-price">$6.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Capuccino Vainilla</div></div><div class="menu-price">$6.500</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Café en Leche</div></div><div class="menu-price">$4.500</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Milo Caliente</div></div><div class="menu-price">$5.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Pony Malta</div></div><div class="menu-price">$3.500</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Gatorade</div></div><div class="menu-price">$4.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Bretaña</div></div><div class="menu-price">$4.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Coca Cola Personal</div></div><div class="menu-price">$3.500</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Coca Cola 1.5L</div></div><div class="menu-price">$8.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Coca Cola 2.8L</div></div><div class="menu-price">$11.000</div></div>
+    </div>
+
+    <div id="otros" class="menu-panel">
+      <div class="menu-card"><div><div class="menu-item-name">Sandwich de Pollo</div></div><div class="menu-price">$12.000</div></div>
+      <div class="menu-card"><div><div class="menu-item-name">Migao</div></div><div class="menu-price">$15.000</div></div>
+    </div>
+
+    <div class="menu-note">
+      🛵 <strong>Todo producto para llevar tiene un adicional de $1.000</strong> · Domicilios: <a href="tel:3123931341" style="color:var(--rose-dark);font-weight:700;">312 393 1341</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="nosotros">
+  <div class="about-inner">
+    <div>
+      <span class="section-tag">Nuestra historia</span>
+      <h2>El sabor de <em>Rivera</em></h2>
+      <p class="section-lead">Somos una pastelería y repostería artesanal ubicada en el corazón de Rivera, Huila. Creamos postres que no solo se comen, se viven. Cada helado, cada torta y cada postre está hecho con los mejores ingredientes y mucho amor.</p>
+      <div class="about-stats">
+        <div class="stat">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">Productos en menú</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">🏔️</div>
+          <div class="stat-label">Rivera, Huila</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Amor en cada postre</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">Antojo siempre</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="about-visual-main">"Cada postre es una historia que merece ser contada con sabor"</div>
+      <div class="about-visual-text">DS</div>
+    </div>
+  </div>
+</section>
+
+<!-- DOMICILIOS -->
+<section class="delivery" id="domicilios">
+  <div class="delivery-inner">
+    <span class="section-tag">Domicilios</span>
+    <h2>Tu antojo,<br><em>a donde estés</em></h2>
+    <div class="delivery-card">
+      <p style="color:var(--muted); font-size:0.9rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:600;">Llámanos o escríbenos</p>
+      <a href="tel:3123931341" class="delivery-phone">312 393 1341</a>
+      <p class="delivery-sub">O escríbenos por WhatsApp para pedidos y más información</p>
+      <a href="https://wa.me/573123931341" target="_blank" class="btn-primary" style="margin: 0 auto; width: fit-content; display: inline-flex;">
+        💬 Escribir por WhatsApp
+      </a>
+      <br><br>
+      <span class="delivery-note">+$1.000 por domicilio · Rivera, Huila</span>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL -->
+<section class="social-section">
+  <div class="social-inner">
+    <span class="section-tag">Síguenos</span>
+    <h2>Encuéntranos en <em>redes</em></h2>
+    <p style="color:var(--muted); font-size:0.95rem;">Mira nuestros postres, promociones y novedades. ¡Nos encanta verte!</p>
+    <div class="social-links">
+      <a href="https://www.instagram.com/decorando_rivera/" target="_blank" class="social-link ig">
+        📸 Instagram @decorando_rivera
+      </a>
+      <a href="https://www.facebook.com/cadenaalexa" target="_blank" class="social-link fb">
+        📘 Facebook
+      </a>
+      <a href="https://wa.me/573123931341" target="_blank" class="social-link wa">
+        💬 WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>Decorando Sueños</strong> · Pastelería & Repostería · Rivera, Huila, Colombia</p>
+  <p style="margin-top:0.5rem;">Hecho con 🩷 en el Huila</p>
+</footer>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.feature-card, .menu-card, .stat').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
