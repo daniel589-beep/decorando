@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://daniel589-beep.github.io/decorando/sitemap.xml
